@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Encode Decode Pikalang Online</title>
+    <link rel="stylesheet" href="https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-dark.min.css">
+    <script src="brainfuck.js"></script>
+  </head>
+  <body>
+<div class="container">
+  <div class="row cols-sm-12 cols-md-10">
+    <div class="col-md-offset-1">
+      <br />
+      <h1>Encode Decode Pikalang Online</h1>
+      <p>>Pika pika</p>
+      <form>
+        <div class="input-group vertical">
+          <label for="pikalang">Input</label>
+          <textarea name="name" id="pikalang"></textarea>
+        </div>
+        <div class="input-group fluid">
+          <button type="button" id="decodeButton" name="button">Decode</button>
+        </div>
+        <div class="input-group vertical">
+          <label for="out">Output</label>
+          <textarea readonly name="name" id="out"></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="col-sm col-md-10 col-md-offset-1">
+    <p>Test test</p>
+    <p>By <a href="https://twitter.com/Mrtn9">Martin "Mrtn" Ingesen</a></p>
+  </div>
+</footer>
+    <script type="text/javascript">
+      document.getElementById("decodeButton").addEventListener("click",
+      function(){
+          var text = document.getElementById("pikalang").value;
+
+          text = decode(text)
+
+          document.getElementById("out").innerHTML = text;
+      });
+
+      function decode(input){
+          pikaMap = new Map();
+          pikaMap.set("pipi", ">");
+          pikaMap.set("pichu", "<");
+          pikaMap.set("pi", "+");
+          pikaMap.set("ka", "-");
+          pikaMap.set("pikachu", ".");
+          pikaMap.set("pikapi", ",");
+          pikaMap.set("pika", "[");
+          pikaMap.set("chu", "]");
+          input = input.replace(/\n|\r/g, " ");
+          input = input.split(" ")
+          var brainfuck = "";
+          for(var i = 0; i < input.length; i++){
+              if(input[i] == "") continue;
+              if(pikaMap.get(input[i]) == undefined) return "Could not convert Pikalang.";
+              brainfuck += pikaMap.get(input[i]);
+          }
+
+          return brainfuck;
+      }  
+
+    </script>
+  </body>
+</html>
