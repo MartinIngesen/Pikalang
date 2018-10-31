@@ -60,12 +60,13 @@
           var brainfuck = "";
           for(var i = 0; i < input.length; i++){
               if(input[i] == "") continue;
+              input[i] = input[i].toLowerCase();
               if(pikaMap.get(input[i]) == undefined) return "Could not convert Pikalang.";
               brainfuck += pikaMap.get(input[i]);
           }
 
           return brainfuck;
-      }  
+      }
 
     </script>
   </body>
